@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Levitt Pavilion Houston</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #01A860;
+      --navy: #171C68;
+      --white: #FFFFFF;
+      --black: #1A1A1A;
+      --off-white: #F4F5FA;
+      --gray: #4E5272;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--black);
+      background: var(--white);
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 4rem;
+      background: rgba(23, 28, 104, 0.75);
+      transition: background 0.3s;
+    }
+
+    .nav.scrolled {
+      background: var(--navy);
+    }
+
+    .nav-logo img {
+      height: 80px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .nav-links .brand-guide-link {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .nav-links .brand-guide-link:hover {
+      color: var(--green);
+    }
+
+    .nav-links .donate-btn {
+      display: inline-block;
+      background: var(--green);
+      color: var(--white);
+      padding: 20px 44px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 0;
+      transition: all 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-links .donate-btn:hover {
+      background: #019952;
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(23, 28, 104, 0.9) 0%, rgba(23, 28, 104, 0.5) 60%, transparent 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 6rem;
+      max-width: 900px;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 1.6rem;
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-top: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+      animation-delay: 1.4s;
+      position: absolute;
+      bottom: 6rem;
+      left: 6rem;
+      z-index: 1;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(4rem, 8vw, 7rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-content h1 span {
+      color: var(--green);
+    }
+
+    .hero-tagline {
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.5;
+    }
+
+    .hero-tagline strong {
+      font-weight: 500;
+      color: var(--green);
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 8rem 4rem;
+    }
+
+    .section-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      align-items: stretch;
+      min-height: 80vh;
+    }
+
+    .section-split--reverse .section-image {
+      order: -1;
+    }
+
+    .section-image {
+      overflow: hidden;
+    }
+
+    .section-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .section-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 7rem;
+    }
+
+    .section-eyebrow {
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--green);
+      margin-bottom: 1.5rem;
+      font-family: monospace;
+    }
+
+    .section-heading {
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      color: var(--navy);
+    }
+
+    .section-body {
+      font-size: 1.2rem;
+      color: var(--black);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 20px 44px;
+      transition: all 0.2s;
+      align-self: flex-start;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: #019952;
+    }
+
+    .btn-outline {
+      background: none;
+      color: var(--navy);
+      border: 2px solid var(--navy);
+      padding: 18px 42px;
+    }
+
+    .btn-outline:hover {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-group .btn {
+      min-width: 220px;
+      text-align: center;
+    }
+
+    /* EVENT */
+    .event-details {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .event-details li {
+      padding: 0.75rem 0;
+      font-size: 1.15rem;
+      border-bottom: 1px solid var(--off-white);
+    }
+
+    .event-details li strong {
+      color: var(--navy);
+      font-weight: 700;
+      display: inline-block;
+      min-width: 100px;
+    }
+
+    /* QUOTE */
+    .quote-section {
+      position: relative;
+      padding: 12rem 6rem;
+      overflow: hidden;
+    }
+
+    .quote-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .quote-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .quote-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(23, 28, 104, 0.85);
+    }
+
+    .quote-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .quote-content blockquote {
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.4;
+      margin-bottom: 2.5rem;
+    }
+
+    .quote-content blockquote::before {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 5px;
+      background: var(--green);
+      margin: 0 auto 2.5rem;
+    }
+
+    .quote-content cite {
+      font-style: normal;
+      font-size: 1.2rem;
+      color: var(--green);
+      font-weight: 700;
+      font-family: monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: block;
+    }
+
+
+    /* SUPPORT */
+    .support-section .section-text {
+      background: var(--off-white);
+    }
+
+    .support-section .section-heading {
+      color: var(--navy);
+    }
+
+    .support-section .section-body {
+      color: var(--black);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--navy);
+      padding: 6rem;
+    }
+
+    .footer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 4rem;
+    }
+
+    .footer-brand {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .footer-brand.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .footer-brand span {
+      color: var(--green);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      transform: translateY(0);
+      display: inline-block;
+    }
+
+    .footer-links a:hover {
+      color: var(--green);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-text {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1.1rem;
+    }
+
+    .footer-email {
+      color: var(--green);
+      text-decoration: none;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .footer-email:hover {
+      color: var(--white);
+    }
+
+    /* ANIMATIONS */
+    .section-text {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+
+    .quote-content {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .section-text.revealed,
+    .quote-content.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-content h1 {
+      animation: heroSlideUp 0.8s ease forwards;
+    }
+
+    .hero-tagline-line {
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    @keyframes heroSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    .btn {
+      transition: all 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* RESPONSIVE - LAPTOP */
+    @media (max-width: 1680px) {
+      .hero-content {
+        padding: 0 4rem;
+      }
+
+      .hero-content h1 {
+        font-size: 5rem;
+      }
+
+      .hero-tagline {
+        font-size: 1.8rem;
+      }
+
+      .section-text {
+        padding: 4rem 4rem;
+      }
+
+      .section-heading {
+        font-size: 2.6rem;
+      }
+
+      .section-body {
+        font-size: 1.1rem;
+      }
+
+      .quote-section {
+        padding: 8rem 4rem;
+      }
+
+      .quote-content blockquote {
+        font-size: 2.2rem;
+      }
+
+      .footer {
+        padding: 4rem;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .nav {
+        padding: 1.2rem 2.5rem;
+      }
+
+      .nav-logo img {
+        height: 60px;
+      }
+
+      .nav-links {
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        font-size: 1rem;
+      }
+
+      .nav-links .donate-btn {
+        padding: 14px 28px;
+        font-size: 1rem;
+      }
+
+      .hero-content {
+        padding: 0 3rem;
+      }
+
+      .hero-content h1 {
+        font-size: 4rem;
+      }
+
+      .hero-tagline {
+        font-size: 1.5rem;
+      }
+
+      .section-split {
+        min-height: 60vh;
+      }
+
+      .section-text {
+        padding: 3rem;
+      }
+
+      .section-heading {
+        font-size: 2.2rem;
+      }
+
+      .section-eyebrow {
+        font-size: 1.1rem;
+      }
+
+      .quote-section {
+        padding: 6rem 3rem;
+      }
+
+      .quote-content blockquote {
+        font-size: 1.8rem;
+      }
+
+      .quote-content cite {
+        font-size: 1rem;
+      }
+
+      .footer {
+        padding: 3rem;
+      }
+
+      .footer-brand {
+        font-size: 2rem;
+      }
+    }
+
+    /* RESPONSIVE - MOBILE */
+    @media (max-width: 768px) {
+      .nav {
+        padding: 1rem 2rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-content {
+        padding: 0 2rem;
+      }
+
+      .section {
+        padding: 4rem 2rem;
+      }
+
+      .section-split {
+        grid-template-columns: 1fr;
+      }
+
+      .section-split--reverse {
+        direction: ltr;
+      }
+
+      .section-text {
+        padding: 3rem 2rem;
+      }
+
+      .quote-section {
+        padding: 5rem 2rem;
+      }
+
+      .quote-content blockquote {
+        font-size: 1.4rem;
+      }
+
+      .footer {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+        padding: 3rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="mainNav">
+    <a href="/" class="nav-logo">
+      <img src="assets/LPH-logo-white.svg" alt="Levitt Pavilion Houston">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="brand-guide-link">&#8592; Brand Guide</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/musicfest">MusicFest</a></li>
+      <li><a href="/community">Community</a></li>
+      <li><a href="/timeline">Timeline</a></li>
+      <li><a href="/contact-us">Contact</a></li>
+      <li><a href="/donate" class="donate-btn">Donate</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="https://images.squarespace-cdn.com/content/v1/53d95c00e4b02a6aaa6ccfb1/ff7be1bd-df53-48f0-adab-a64f0ffb21cc/Levitt+Pavilion+night.jpg" alt="Levitt Pavilion at night">
+    </div>
+    <div class="hero-content">
+      <h1>LEVITT<br>PAVILION<br><span>HOUSTON</span></h1>
+      <p class="hero-tagline">
+        <span class="hero-tagline-line">Music <strong>connects</strong> us.</span><br>
+        <span class="hero-tagline-line">Music <strong>uplifts</strong> us.</span><br>
+        <span class="hero-tagline-line">Music <strong>creates community</strong>.</span>
+      </p>
+    </div>
+    <span class="hero-tag">COMING <span style="font-family: monospace;">2028</span></span>
+  </section>
+
+  <!-- ABOUT -->
+  <div class="section-split">
+    <div class="section-text">
+      <span class="section-eyebrow">About Us</span>
+      <h2 class="section-heading">Bringing free, live music to Houston's public spaces</h2>
+      <p class="section-body">Levitt Pavilion Houston is a community-driven initiative offering free live music in public spaces. A permanent venue is in development, but performances and programs reflecting Houston's energy and diversity are already underway.</p>
+      <a href="/about" class="btn btn-primary">Learn More</a>
+    </div>
+    <div class="section-image">
+      <img src="https://images.squarespace-cdn.com/content/v1/53d95c00e4b02a6aaa6ccfb1/1663523137579-R6NJZ42GV0KDJGIBXRBE/building+community.jpg" alt="Building community through music">
+    </div>
+  </div>
+
+  <!-- UPCOMING EVENT -->
+  <div class="section-split section-split--reverse">
+    <div class="section-text">
+      <span class="section-eyebrow">Upcoming Event</span>
+      <h2 class="section-heading">MusicFest 2027</h2>
+      <ul class="event-details">
+        <li><strong>Date</strong> Saturday, October 23, 2027</li>
+        <li><strong>Time</strong> 11:00 AM – 8:00 PM</li>
+        <li><strong>Location</strong> Willow Waterhole Greenway, 5300 Dryad Drive, Houston, TX 77035</li>
+      </ul>
+      <p class="section-body">A full day of free live music, food trucks, games, and a community costume contest in one of Houston's most beautiful outdoor spaces. Featuring school and professional bands, with a headline set by Skyrocket.</p>
+      <a href="/musicfest" class="btn btn-primary">Learn More</a>
+    </div>
+    <div class="section-image">
+      <img src="assets/musicfest.jpg" alt="Band performing at MusicFest">
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <section class="quote-section">
+    <div class="quote-bg">
+      <img src="https://images.squarespace-cdn.com/content/v1/53d95c00e4b02a6aaa6ccfb1/f8534f91-58a2-4dd9-afa3-deac12a51a44/westport.jpg" alt="Willow Waterhole">
+    </div>
+    <div class="quote-content">
+      <blockquote>"When I learned the Levitt Foundation had chosen Willow Waterhole Greenway as the Houston location, my energy was off the charts. Explosive."</blockquote>
+      <cite><span style="color: var(--white);">Howard Sacks</span>, President, Levitt Pavilion Houston</cite>
+    </div>
+  </section>
+
+  <!-- MERCH -->
+  <div class="section-split merch-section">
+    <div class="section-text">
+      <span class="section-eyebrow">Merch</span>
+      <h2 class="section-heading">Rep the Pavilion</h2>
+      <p class="section-body">Show your support and wear the mark. Our signature tee features the Levitt Pavilion Houston icon on premium heavyweight cotton.</p>
+      <a href="/shop" class="btn btn-primary">Shop Now</a>
+    </div>
+    <div class="section-image">
+      <img src="assets/tshirt.jpg" alt="Levitt Pavilion Houston t-shirt">
+    </div>
+  </div>
+
+  <!-- SUPPORT -->
+  <div class="section-split support-section">
+    <div class="section-image">
+      <img src="https://images.squarespace-cdn.com/content/v1/53d95c00e4b02a6aaa6ccfb1/8a053889-672c-4c86-8dca-2479cf39fb7f/Support+team.jpg" alt="Support team">
+    </div>
+    <div class="section-text">
+      <span class="section-eyebrow">Support</span>
+      <h2 class="section-heading">Support Our Mission</h2>
+      <p class="section-body">Your support helps create space for free live music in Houston's parks and neighborhoods. Every contribution brings us closer to a permanent home for community music.</p>
+      <div class="btn-group">
+        <a href="/donate" class="btn btn-primary">Donate</a>
+        <a href="/contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">LEVITT PAVILION<br><span>HOUSTON</span></div>
+      <a href="mailto:info@levitthouston.org" class="footer-email">info@levitthouston.org</a>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-text">© 2026 Levitt Pavilion Houston, Inc. | 5512 Gasmer Dr, Houston, TX</p>
+    </div>
+  </footer>
+
+  <script>
+
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 100);
+    });
+
+    // Scroll-triggered animations
+    const animateElements = document.querySelectorAll('.section-text, .quote-content, .footer-brand');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    animateElements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add('revealed');
+      } else {
+        revealObserver.observe(el);
+      }
+    });
+
+
+    // Staggered tagline reveal
+    const taglineLines = document.querySelectorAll('.hero-tagline-line');
+    taglineLines.forEach((line, i) => {
+      line.style.animationDelay = `${0.8 + i * 0.2}s`;
+    });
+  </script>
+
+</body>
+</html>
