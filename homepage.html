@@ -126,7 +126,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, rgba(23, 28, 104, 0.9) 0%, rgba(23, 28, 104, 0.5) 60%, transparent 100%);
+      background: linear-gradient(to right, rgba(12, 14, 40, 0.9) 0%, rgba(12, 14, 40, 0.5) 40%, rgba(12, 14, 40, 0.1) 65%, transparent 100%);
     }
 
     .hero-content {
@@ -291,13 +291,14 @@
       padding: 0.75rem 0;
       font-size: 1.15rem;
       border-bottom: 1px solid var(--off-white);
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 0.5rem;
     }
 
     .event-details li strong {
       color: var(--navy);
       font-weight: 700;
-      display: inline-block;
-      min-width: 100px;
     }
 
     /* QUOTE */
@@ -519,6 +520,10 @@
         padding: 0 4rem;
       }
 
+      .hero-tag {
+        left: 4rem;
+      }
+
       .hero-content h1 {
         font-size: 5rem;
       }
@@ -578,6 +583,10 @@
         padding: 0 3rem;
       }
 
+      .hero-tag {
+        left: 3rem;
+      }
+
       .hero-content h1 {
         font-size: 4rem;
       }
@@ -635,6 +644,10 @@
 
       .hero-content {
         padding: 0 2rem;
+      }
+
+      .hero-tag {
+        left: 2rem;
       }
 
       .section {
@@ -755,7 +768,7 @@
       <a href="/shop" class="btn btn-primary">Shop Now</a>
     </div>
     <div class="section-image">
-      <img src="assets/tshirt.jpg" alt="Levitt Pavilion Houston t-shirt">
+      <img src="assets/shirt.jpg" alt="Levitt Pavilion Houston t-shirt">
     </div>
   </div>
 

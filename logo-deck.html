@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Levitt Pavilion Houston | Logo Introduction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #01A860;
+      --navy: #171C68;
+      --white: #FFFFFF;
+      --black: #1A1A1A;
+      --gray: #4E5272;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--black);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    .back-link {
+      position: fixed;
+      top: 2rem;
+      left: 2rem;
+      z-index: 100;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--navy);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 0.6rem 1.2rem;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover { color: var(--green); }
+
+    /* SLIDES */
+    .slide {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      scroll-snap-align: start;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide--navy { background: var(--navy); color: var(--white); }
+    .slide--white { background: var(--white); color: var(--navy); }
+
+    .slide-label {
+      position: absolute;
+      bottom: 3rem;
+      left: 6rem;
+      font-family: monospace;
+      font-size: 1.2rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.35;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .slide--navy .slide-label {
+      color: var(--white);
+    }
+
+    .slide--white .slide-label {
+      color: var(--navy);
+    }
+
+    .slide-number {
+      position: absolute;
+      bottom: 3rem;
+      right: 6rem;
+      font-family: monospace;
+      font-size: 2rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      opacity: 0.35;
+      line-height: 1;
+    }
+
+    .slide--navy .slide-number {
+      color: var(--white);
+    }
+
+    .slide--white .slide-number {
+      color: var(--navy);
+    }
+
+    /* TITLE SLIDE */
+    .slide--title {
+      padding: 6rem;
+    }
+
+    .slide--title .deck-brand {
+      font-size: 1.7rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.04em;
+      word-spacing: 0.15em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .slide--title .deck-brand span {
+      color: var(--green);
+    }
+
+    .slide--title h1 {
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 900;
+      line-height: 0.9;
+      margin-bottom: 2rem;
+    }
+
+    .slide--title p {
+      font-size: 1.4rem;
+      font-weight: 300;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 480px;
+    }
+
+
+    /* SHOWCASE SLIDES */
+    .slide--showcase {
+      padding: 6rem;
+      gap: 6rem;
+    }
+
+    .showcase-text {
+      flex: 0 0 500px;
+    }
+
+    .showcase-text .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-family: monospace;
+      color: var(--green);
+      margin-bottom: 1rem;
+    }
+
+    .showcase-text h2 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.05;
+      margin-bottom: 1.2rem;
+      white-space: nowrap;
+    }
+
+    .showcase-text p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.7;
+      text-wrap: balance;
+    }
+
+    .slide--navy .showcase-text p { color: rgba(255, 255, 255, 0.65); }
+    .slide--white .showcase-text p { color: var(--gray); }
+
+    .showcase-logo {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .showcase-logo img.logo-primary {
+      width: 100%;
+      max-width: 440px;
+      height: auto;
+    }
+
+    .showcase-logo img.logo-alternate {
+      width: 300px;
+      height: auto;
+    }
+
+    /* SYMBOLOGY SLIDE */
+    .slide--symbology {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3rem;
+      padding-top: 8rem;
+    }
+
+    .slide--symbology .showcase-text {
+      flex: none;
+    }
+
+    .slide--symbology .symbology-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 4rem;
+      width: 100%;
+    }
+
+    .symbology-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .symbology-icon {
+      width: 140px;
+      height: 140px;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .symbology-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .symbology-item h3 {
+      font-family: monospace;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .symbology-item p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--gray);
+    }
+
+    /* SCROLL TRANSITIONS */
+    .showcase-text,
+    .showcase-logo,
+    .slide--title > div,
+    .slide--symbology .showcase-text,
+    .symbology-item {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .showcase-logo {
+      transform: translateY(30px) scale(0.95);
+      transition: opacity 1s ease 0.2s, transform 1s ease 0.2s;
+    }
+
+    .slide--title > div {
+      transform: translateX(-40px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+
+    .symbology-item:nth-child(1) { transition-delay: 0s; }
+    .symbology-item:nth-child(2) { transition-delay: 0.1s; }
+    .symbology-item:nth-child(3) { transition-delay: 0.2s; }
+    .symbology-item:nth-child(4) { transition-delay: 0.3s; }
+
+    .revealed {
+      opacity: 1 !important;
+      transform: translateY(0) translateX(0) scale(1) !important;
+    }
+
+    .slide-label {
+      opacity: 0;
+      transition: opacity 1.5s ease 0.15s;
+    }
+
+    .slide-number {
+      opacity: 0;
+      transition: opacity 1.5s ease 0.15s;
+    }
+
+    .slide-number.revealed,
+    .slide-label.revealed {
+      opacity: 0.25;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1200px) {
+      .slide--showcase { padding: 4rem; gap: 4rem; }
+      .showcase-text { flex: 0 0 280px; }
+      .showcase-text h2 { font-size: 2.2rem; }
+      .showcase-logo img.logo-primary { max-width: 400px; }
+    }
+
+
+    @media (max-width: 768px) {
+      .slide--title { padding: 3rem; }
+      .slide--showcase {
+        padding: 3rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3rem;
+      }
+      .showcase-text { flex: none; }
+      .showcase-logo img.logo-primary { max-width: 300px; }
+      .showcase-logo img.logo-alternate { width: 180px; }
+      .slide--symbology .symbology-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-link">&#8592; Brand Guide</a>
+
+  <!-- 01: TITLE -->
+  <section class="slide slide--navy slide--title">
+    <div>
+      <div class="deck-brand">LEVITT PAVILION <span>HOUSTON</span></div>
+      <h1>Our Logo Marks</h1>
+      <p>Two marks, one mission. A quick introduction to their usage and meaning.</p>
+    </div>
+    <span class="slide-number">01</span>
+  </section>
+
+  <!-- 02: PRIMARY on WHITE -->
+  <section class="slide slide--white slide--showcase">
+    <div class="showcase-text">
+      <h2>The Word Mark</h2>
+      <p>Our primary identity. Concentric arcs and a central star paired with the wordmark. The default for all brand touchpoints.</p>
+    </div>
+    <div class="showcase-logo">
+      <img src="assets/LPH-logo.svg" alt="Primary Logo" class="logo-primary">
+    </div>
+    <span class="slide-label">Word Mark</span>
+    <span class="slide-number">02</span>
+  </section>
+
+  <!-- 03: PRIMARY on NAVY -->
+  <section class="slide slide--navy slide--showcase">
+    <div class="showcase-text">
+      <h2>Word Mark on Navy</h2>
+      <p>White logotype with green accents for dark backgrounds. Full legibility maintained at every scale.</p>
+    </div>
+    <div class="showcase-logo">
+      <img src="assets/LPH-logo-white.svg" alt="Primary Logo on Dark" class="logo-primary">
+    </div>
+    <span class="slide-label">Word Mark</span>
+    <span class="slide-number">03</span>
+  </section>
+
+  <!-- 04: ALTERNATE on WHITE -->
+  <section class="slide slide--white slide--showcase">
+    <div class="showcase-text">
+      <h2>The Graphic Mark</h2>
+      <p>A compact mark for tight spaces. Social avatars, favicons, merchandise, and embroidery.</p>
+    </div>
+    <div class="showcase-logo">
+      <img src="assets/new logo.svg" alt="Alternate Logo" class="logo-alternate">
+    </div>
+    <span class="slide-label">Graphic Mark</span>
+    <span class="slide-number">04</span>
+  </section>
+
+  <!-- 05: ALTERNATE on NAVY -->
+  <section class="slide slide--navy slide--showcase">
+    <div class="showcase-text">
+      <h2>Graphic Mark on Navy</h2>
+      <p>The icon on dark surfaces. Holds clarity at small sizes and single-color applications.</p>
+    </div>
+    <div class="showcase-logo">
+      <img src="assets/new-logo-white.svg" alt="Alternate Logo on Dark" class="logo-alternate">
+    </div>
+    <span class="slide-label">Graphic Mark</span>
+    <span class="slide-number">05</span>
+  </section>
+
+  <!-- 06: SYMBOLOGY -->
+  <section class="slide slide--white slide--showcase slide--symbology">
+    <div class="showcase-text">
+      <h2>Logo Elements</h2>
+      <p>The four core elements that make up the Levitt Pavilion Houston mark.</p>
+    </div>
+    <div class="symbology-grid">
+      <div class="symbology-item">
+        <div class="symbology-icon">
+          <img src="assets/Group 18.svg" alt="Arcs">
+        </div>
+        <h3>Sound Arcs</h3>
+        <p>Sound waves radiating outward from a stage. Community expanding from a shared center.</p>
+      </div>
+      <div class="symbology-item">
+        <div class="symbology-icon">
+          <img src="assets/Star 5.svg" alt="Star" style="width: 70%; height: 70%;">
+        </div>
+        <h3>Lone Star</h3>
+        <p>The performer at the heart of every gathering. A focal point where energy gathers.</p>
+      </div>
+      <div class="symbology-item">
+        <div class="symbology-icon">
+          <img src="assets/Union.svg" alt="Structure">
+        </div>
+        <h3>Derrick Tower</h3>
+        <p>A nod to Houston's industrial heritage. Repurposed as a beacon for community and rooted in place.</p>
+      </div>
+      <div class="symbology-item">
+        <div class="symbology-icon">
+          <img src="assets/Group 50.svg" alt="Bayou" style="width: 140px; height: auto; object-fit: contain; transform: scale(1.5);">
+        </div>
+        <h3>Bayou Wave</h3>
+        <p>Houston's waterways connecting neighborhoods to the stage and to each other.</p>
+      </div>
+    </div>
+    <span class="slide-number">06</span>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        } else {
+          entry.target.classList.remove('revealed');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.showcase-text, .showcase-logo, .slide--title > div, .symbology-item, .slide-number, .slide-label').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
